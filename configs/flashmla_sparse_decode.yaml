@@ -1,0 +1,16 @@
+operator: flashmla_sparse_decode
+dtype: bf16
+repeat: 100
+warmup: 20
+flashmla:
+  path: third_party/FlashMLA
+l2:
+  effective_l2_mb: [full, 40, 32, 25, 16, 12.5]
+  hit_ratio: 1.0
+  prime_policy: per_repeat
+  keeper_repeats: 8
+shapes:
+  - {batch_size: 1, seq_len: 4096, head_dim: 128, top_k_blocks: 16, block_size: 64}
+  - {batch_size: 1, seq_len: 8192, head_dim: 128, top_k_blocks: 32, block_size: 64}
+  - {batch_size: 2, seq_len: 16384, head_dim: 128, top_k_blocks: 64, block_size: 128}
+

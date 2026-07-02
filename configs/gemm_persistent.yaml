@@ -1,0 +1,15 @@
+operator: gemm
+dtype: bf16
+repeat: 100
+warmup: 20
+l2:
+  effective_l2_mb: [full, 40, 32, 25, 16, 12.5]
+  hit_ratio: 1.0
+  prime_policy: per_repeat
+  keeper_repeats: 8
+shapes:
+  - {M: 512, N: 512, K: 512}
+  - {M: 1024, N: 1024, K: 1024}
+  - {M: 2048, N: 2048, K: 1024}
+  - {M: 4096, N: 1024, K: 1024}
+

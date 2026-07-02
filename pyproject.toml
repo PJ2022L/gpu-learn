@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu-l2-harness"
+version = "0.1.0"
+description = "Harness for H800 L2 persisting cache capacity-sensitivity experiments."
+requires-python = ">=3.10"
+dependencies = [
+  "PyYAML>=6.0",
+  "torch",
+  "pandas",
+  "matplotlib",
+]
+
+[project.scripts]
+gpu-l2 = "gpu_l2_harness.cli:main"
+
+[tool.setuptools]
+packages = ["gpu_l2_harness", "gpu_l2_harness.adapters", "gpu_l2_harness.agents"]
+
+[tool.setuptools.package-data]
+gpu_l2_harness = ["py.typed"]
